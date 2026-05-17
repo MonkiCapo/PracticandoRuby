@@ -1,4 +1,6 @@
-require_relative 'MetodosCalc/Metodos.rb'
+require_relative 'MetodosCalc/Metodos'
+require_relative '../Classes/Jugador'
+require_relative '../Classes/Pez'
 
 puts "Por favor, ingresá tu nombre:"
 nombre_ingresado = gets.chomp
@@ -80,5 +82,45 @@ loop do
             puts "Un gusto entonces, #{nombre_ingresado}, aun así esperate que seguro agregue otra cosa por aca así seguis testeando"
             break
         end
+    end
+end
+
+puts "-------------------------------------------------------------------------------------------"
+puts ""
+
+puts "Bueno ya volvimos #{nombre_ingresado}, te gusta pescar? La última vez que pesque volvimos con un celular menos, pero preparate! 😭"
+
+jugador = Jugador.new(nombre_ingresado)
+
+loop do
+
+    puts "Entonces qué te gustaría hacer?"
+    puts "1. Ver tus stats"
+    puts "2. Ver tu inventario"
+    puts "3. Pescar!!!"
+    puts "4. Irte también de aca? 😭"
+
+    opcion2 = gets.chomp
+
+    case opcion2
+        when "1"
+            puts "Bueno, observalas bien entonces"
+            puts ""
+            puts "Nombre: #{jugador.nombre}"
+            puts "Vida: #{jugador.vida}"
+            puts ""
+
+    when "2"
+        if jugador.inventario.empty?
+            puts "Estamos secos de pescados eh. O los vendiste todos, o no pescaste así que anda y pesca!"
+        else
+            puts "Tenes estos peces:"
+            puts ""
+            jugador.inventario.each do |pez|
+            puts "#{pez.nombre} - #{pez.peso}kg - #{pez.rareza}"
+            end
+
+        end
+       
     end
 end
