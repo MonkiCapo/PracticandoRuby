@@ -110,17 +110,24 @@ loop do
             puts "Vida: #{jugador.vida}"
             puts ""
 
-    when "2"
-        if jugador.inventario.empty?
-            puts "Estamos secos de pescados eh. O los vendiste todos, o no pescaste así que anda y pesca!"
-        else
-            puts "Tenes estos peces:"
-            puts ""
-            jugador.inventario.each do |pez|
-            puts "#{pez.nombre} - #{pez.peso}kg - #{pez.rareza}"
+        when "2"
+            if jugador.inventario.empty?
+                puts "Estamos secos de pescados eh. O los vendiste todos, o no pescaste así que anda y pesca!"
+            else
+                puts "Tenes estos peces:"
+                puts ""
+                jugador.inventario.each do |pez|
+                puts "#{pez.nombre} - #{pez.peso}kg - #{pez.rareza}"
+                end
+                puts ""
             end
 
-        end
+        when "3"
+            jugador.pescar
+
+        when "4"
+            puts "No te gusta pescar? Dejame una sugerencia entonces"
+            break
        
     end
 end
