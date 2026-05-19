@@ -1,6 +1,8 @@
-require_relative 'MetodosCalc/Metodos'
+require_relative 'Metodos/Metodos.rb'
 require_relative '../Classes/Jugador'
 require_relative '../Classes/Pez'
+
+limpiar_pantalla()
 
 puts "Por favor, ingresá tu nombre:"
 nombre_ingresado = gets.chomp
@@ -10,8 +12,8 @@ while nombre_ingresado.empty?
     nombre_ingresado = gets.chomp
 end
 
+puts ""
 saludar(nombre_ingresado)
-
 puts ""
 
 loop do
@@ -60,10 +62,11 @@ loop do
         puts "Ingresá el porcentaje a descontar:"
         n2 = gets.chomp.to_f
         PorcentajeX(n1, n2)
+        limpiar_pantalla()
         break unless pedir_continuar
 
     when "5"
-        puts "Si no te interesa la calculadora, espera nomás que capaz y agrego algo que te guste #{nombre_ingresado} :)"
+        puts "Si no te interesa la calculadora, en los proximos segundos #{nombre_ingresado} :)"
         break
 
     else
@@ -85,10 +88,12 @@ loop do
     end
 end
 
+limpiar_pantalla()
+
 puts "-------------------------------------------------------------------------------------------"
 puts ""
 
-puts "Bueno ya volvimos #{nombre_ingresado}, te gusta pescar? La última vez que pesque volvimos con un celular menos, pero preparate! 😭"
+puts "Bueno ya volvimos #{nombre_ingresado}, te gusta pescar? La última vez que pesque volvimos con un celular menos, pero preparate! 😭\n "
 
 jugador = Jugador.new(nombre_ingresado)
 
@@ -104,20 +109,20 @@ loop do
 
     case opcion2
         when "1"
-            puts "Bueno, observalas bien entonces"
-            puts ""
-            puts "Nombre: #{jugador.nombre}"
-            puts "Vida: #{jugador.vida}"
-            puts ""
+            limpiar_pantalla()
+            jugador.mostrar_stats
 
         when "2"
+            limpiar_pantalla()
             jugador.mostrar_inv
 
         when "3"
+            limpiar_pantalla()
             jugador.pescar
 
         when "4"
-            puts "No te gusta pescar? Dejame una sugerencia entonces"
+            limpiar_pantalla()
+            puts "No te gusta pescar? Dejame una sugerencia entonces\n "
             break
        
     end

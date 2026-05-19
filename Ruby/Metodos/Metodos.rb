@@ -34,4 +34,10 @@ def pedir_continuar
 
     # El método devuelve 'true' si es "Y", o 'false' si es "N"
     respuesta == "Y"
+
+    limpiar_pantalla()
+end
+
+def limpiar_pantalla
+    system("clear") || system("cls")
 end
