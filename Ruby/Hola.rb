@@ -38,7 +38,7 @@ loop do
         break unless pedir_continuar
 
     when "2"
-       puts "--- Has elegido Restar ---"
+        puts "--- Has elegido Restar ---"
         puts "Ingresá el primer número:"
         n1 = gets.chomp.to_i
         puts "Ingresá el segundo número:"
@@ -124,6 +124,6 @@ loop do
             limpiar_pantalla()
             puts "No te gusta pescar? Dejame una sugerencia entonces\n "
             break
-       
+    
     end
 end
