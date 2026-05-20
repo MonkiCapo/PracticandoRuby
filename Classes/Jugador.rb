@@ -1,5 +1,6 @@
 require_relative 'Pez.rb'
 require_relative '../Data/PecesCreados.rb'
+require 'timeout'
 
 class Jugador
 
@@ -33,23 +34,32 @@ class Jugador
     else
       puts "Tenes estos peces:\n "
       @inventario.each do |pez|
-      puts "#{pez.nombre} - #{pez.peso}kg - #{pez.rareza} - #{pez.precio}"
+      puts "#{pez.nombre} - #{pez.peso}kg - #{pez.rareza} - $#{pez.precio}"
       end
       puts ""
     end
   end
 
   def pescar
-    puts "1..."
+    puts "."
     sleep(1.5)
 
-    puts "2..."
+    puts "."
     sleep(1.5)
 
-    puts "3..."
+    puts "."
     sleep(1.5)
 
-    puts "AGARRASTE ALGO!"
+    puts "AGARRASTE ALGO, PRESIONA ENTER RÁPIDO"
+
+    begin 
+      Timeout.timeout(3) do
+        gets
+      end
+    rescue Timeout::Error
+      puts "Se te escapo el pez..."
+      return
+    end
 
     datos_pez = PECES.sample
 
@@ -63,8 +73,6 @@ class Jugador
       datos_pez[:rareza],
       precio_final
     )
-
-    sleep(2)
 
     puts "Pescaste un #{pez_pescado.nombre}!"
     puts "Peso: #{pez_pescado.peso}kg"

@@ -24,7 +24,7 @@ end
 
 def pedir_continuar
     puts ""
-    puts "Bueno, ¿querés continuar? (Y para continuar / N para salir)"
+    puts "Bueno, ¿querés continuar? (Y/N)"
     respuesta = gets.chomp.upcase
 
     while respuesta != "Y" && respuesta != "N"
