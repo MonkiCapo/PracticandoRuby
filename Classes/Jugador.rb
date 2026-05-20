@@ -33,7 +33,7 @@ class Jugador
     else
       puts "Tenes estos peces:\n "
       @inventario.each do |pez|
-      puts "#{pez.nombre} - #{pez.peso}kg - #{pez.rareza}"
+      puts "#{pez.nombre} - #{pez.peso}kg - #{pez.rareza} - #{pez.precio}"
       end
       puts ""
     end
@@ -42,15 +42,36 @@ class Jugador
   def pescar
     puts "1..."
     sleep(1.5)
+
     puts "2..."
     sleep(1.5)
+
     puts "3..."
     sleep(1.5)
+
     puts "AGARRASTE ALGO!"
-    pez = PECES.sample
+
+    datos_pez = PECES.sample
+
+    peso_generado = rand(datos_pez[:peso_min]..datos_pez[:peso_max]).round(2)
+
+    precio_final = (peso_generado * datos_pez[:precio_kilo]).round
+
+    pez_pescado = Pez.new(
+      datos_pez[:nombre],
+      peso_generado,
+      datos_pez[:rareza],
+      precio_final
+    )
+
     sleep(2)
-    puts "Pescaste un #{pez.nombre}!!!\n "
-    @inventario << pez
+
+    puts "Pescaste un #{pez_pescado.nombre}!"
+    puts "Peso: #{pez_pescado.peso}kg"
+    puts "Rareza: #{pez_pescado.rareza}"
+    puts "Valor: $#{pez_pescado.precio}\n "
+
+    @inventario << pez_pescado
   end
 
   def agregardinero(monto)

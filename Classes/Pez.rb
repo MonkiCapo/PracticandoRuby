@@ -1,10 +1,10 @@
 class Pez
-    attr_reader :nombre, :pesoMin, :pesoMax :rareza
+    attr_reader :nombre, :peso, :rareza, :precio
 
-  def initialize(nombre, pesoMin, pesoMax, rareza)
+  def initialize(nombre, peso, rareza, precio)
     @nombre = nombre
-    @pesoMin = pesoMin
-    @pesoMax = pesoMax
+    @peso = peso
     @rareza = rareza
+    @precio = precio
   end
 end
