@@ -41,3 +41,14 @@ end
 def limpiar_pantalla
     system("clear") || system("cls")
 end
+
+def esperar
+    puts "."
+    sleep(1.5)
+
+    puts "."
+    sleep(1.5)
+
+    puts "."
+    sleep(1.5)
+end

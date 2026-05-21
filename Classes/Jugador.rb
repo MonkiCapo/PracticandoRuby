@@ -1,19 +1,23 @@
 require_relative 'Pez.rb'
+require_relative 'Objeto.rb'
 require_relative '../Data/PecesCreados.rb'
+require_relative '../Data/ObjetosCreados.rb'
 require 'timeout'
 
 class Jugador
 
 
-  attr_accessor :vida, :inventario, :dinero
+  attr_accessor :vida, :peces, :dinero, :caña, :objetos
 
   attr_reader :nombre
 
   def initialize(nombre_inicial)
     @nombre = nombre_inicial
     @vida = 100
-    @inventario = []
+    @peces = []
     @dinero = 0
+    @caña = nil
+    @objetos = []
   end
 
   def mostrar_stats
@@ -22,8 +26,8 @@ class Jugador
     puts "Vida: #{@vida}\n "
   end
 
-  def mostrar_inv
-    if @inventario.empty?
+  def mostrar_inv_peces
+    if @peces.empty?
       puts "."
       sleep(1.5)
       puts "."
@@ -33,7 +37,7 @@ class Jugador
       puts "Estamos secos de pescados eh, #{@nombre}. O los vendiste todos, o no pescaste así que anda y pesca!"
     else
       puts "Tenes estos peces:\n "
-      @inventario.each do |pez|
+      @peces.each do |pez|
       puts "#{pez.nombre} - #{pez.peso}kg - #{pez.rareza} - $#{pez.precio}"
       end
       puts ""
@@ -79,10 +83,24 @@ class Jugador
     puts "Rareza: #{pez_pescado.rareza}"
     puts "Valor: $#{pez_pescado.precio}\n "
 
-    @inventario << pez_pescado
+    @peces << pez_pescado
   end
 
   def agregardinero(monto)
+    puts "Recibiste #{monto}!"
     @dinero += monto
   end
+
+  def entregar_kit_inicial
+
+  caña_vieja = OBJETOS[0]
+
+  @objetos << caña_vieja
+
+  5.times do
+    @objetos << OBJETOS[1]
+    end
+
+  end
+
 end

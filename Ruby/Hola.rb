@@ -60,7 +60,7 @@ loop do
         puts "Ingresá el primer número:"
         n1 = gets.chomp.to_f
         puts "Ingresá el porcentaje a descontar:"
-        n2 = gets.chomp.to_f
+        n2 = gets.chmostrar_invomp.to_f
         PorcentajeX(n1, n2)
         limpiar_pantalla()
         break unless pedir_continuar
@@ -70,7 +70,7 @@ loop do
         break
 
     else
-        puts "No se supone que tenes que usar uno de los números de la lista? Intentemos de nuevo"
+        puts "No se mostrar_invsupone que tenes que usar uno de los números de la lista? Intentemos de nuevo"
         puts ""
         puts "Claro, solo si queres (Y para continuar / N para salir)"
 
@@ -82,20 +82,28 @@ loop do
         end
 
         if respuesta == "N"
-            puts "Un gusto entonces, #{nombre_ingresado}, aun así esperate que seguro agregue otra cosa por aca así seguis testeando"
+            puts "Unmostrar_inv gusto entonces, #{nombre_ingresado}, aun así esperate que seguro agregue otra cosa por aca así seguis testeando"
             break
         end
     end
 end
 
 limpiar_pantalla()
-
+mostrar_inv
 puts "-------------------------------------------------------------------------------------------"
 puts ""
 
 puts "Bueno ya volvimos #{nombre_ingresado}, te gusta pescar? La última vez que pesque volvimos con un celular menos, pero preparate! 😭\n "
 
 jugador = Jugador.new(nombre_ingresado)
+
+esperar()
+
+puts "Cierto que no tenes ni si quierra una caña..."
+sleep(1.5)
+puts "BANCAME AHI TE TRAIGO UNA CAÑA QUE ME SOBRA Y 5 CEBOS"
+
+jugador.entregar_kit_inicial
 
 loop do
 
@@ -105,7 +113,7 @@ loop do
     puts "3. Pescar!!!"
     puts "4. Irte también de aca? 😭"
 
-    opcion2 = gets.chomp
+    opcion2 = gets.cmostrar_invhomp
 
     case opcion2
         when "1"
