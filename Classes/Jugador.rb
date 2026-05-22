@@ -1,5 +1,6 @@
 require_relative 'Pez.rb'
 require_relative 'Objeto.rb'
+require_relative '../Ruby/Metodos/Metodos.rb'
 require_relative '../Data/PecesCreados.rb'
 require_relative '../Data/ObjetosCreados.rb'
 require 'timeout'
@@ -28,12 +29,7 @@ class Jugador
 
   def mostrar_inv_peces
     if @peces.empty?
-      puts "."
-      sleep(1.5)
-      puts "."
-      sleep(1.5)
-      puts "."
-      sleep(1.5)
+      esperar()
       puts "Estamos secos de pescados eh, #{@nombre}. O los vendiste todos, o no pescaste así que anda y pesca!"
     else
       puts "Tenes estos peces:\n "
@@ -44,18 +40,7 @@ class Jugador
     end
   end
 
-  def pescar
-    puts "."
-    sleep(1.5)
-
-    puts "."
-    sleep(1.5)
-
-    puts "."
-    sleep(1.5)
-
-    puts "AGARRASTE ALGO, PRESIONA ENTER RÁPIDO"
-
+  def reaccion_pesca
     begin 
       Timeout.timeout(3) do
         gets
@@ -64,6 +49,9 @@ class Jugador
       puts "Se te escapo el pez..."
       return
     end
+  end
+
+  def generar_pez_randomYguardar
 
     datos_pez = PECES.sample
 
@@ -84,6 +72,17 @@ class Jugador
     puts "Valor: $#{pez_pescado.precio}\n "
 
     @peces << pez_pescado
+
+  end
+
+  def pescar
+    esperar()
+
+    puts "AGARRASTE ALGO, PRESIONA ENTER RÁPIDO"
+
+    reaccion_pesca()
+
+    generar_pez_randomYguardar()
   end
 
   def agregardinero(monto)
@@ -93,12 +92,12 @@ class Jugador
 
   def entregar_kit_inicial
 
-  caña_vieja = OBJETOS[0]
+    caña_vieja = OBJETOS[0]
 
-  @objetos << caña_vieja
+    @objetos << caña_vieja
 
-  5.times do
-    @objetos << OBJETOS[1]
+    5.times do
+      @objetos << OBJETOS[1]
     end
 
   end

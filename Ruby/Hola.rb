@@ -70,7 +70,7 @@ loop do
         break
 
     else
-        puts "No se mostrar_invsupone que tenes que usar uno de los números de la lista? Intentemos de nuevo"
+        puts "No se supone que tenes que usar uno de los números de la lista? Intentemos de nuevo"
         puts ""
         puts "Claro, solo si queres (Y para continuar / N para salir)"
 
@@ -82,14 +82,13 @@ loop do
         end
 
         if respuesta == "N"
-            puts "Unmostrar_inv gusto entonces, #{nombre_ingresado}, aun así esperate que seguro agregue otra cosa por aca así seguis testeando"
+            puts "Un gusto entonces, #{nombre_ingresado}, aun así esperate que seguro agregue otra cosa por aca así seguis testeando"
             break
         end
     end
 end
 
 limpiar_pantalla()
-mostrar_inv
 puts "-------------------------------------------------------------------------------------------"
 puts ""
 
@@ -113,7 +112,7 @@ loop do
     puts "3. Pescar!!!"
     puts "4. Irte también de aca? 😭"
 
-    opcion2 = gets.cmostrar_invhomp
+    opcion2 = gets.chomp
 
     case opcion2
         when "1"
