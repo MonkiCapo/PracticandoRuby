@@ -1,6 +1,7 @@
 require_relative 'Metodos/Metodos.rb'
 require_relative '../Classes/Jugador'
 require_relative '../Classes/Pez'
+require_relative 'Metodos/Menu'
 
 limpiar_pantalla()
 
@@ -60,7 +61,7 @@ loop do
         puts "Ingresá el primer número:"
         n1 = gets.chomp.to_f
         puts "Ingresá el porcentaje a descontar:"
-        n2 = gets.chmostrar_invomp.to_f
+        n2 = gets.chomp.to_f
         PorcentajeX(n1, n2)
         limpiar_pantalla()
         break unless pedir_continuar
@@ -106,22 +107,30 @@ jugador.entregar_kit_inicial
 
 loop do
 
-    puts "Entonces qué te gustaría hacer?"
-    puts "1. Ver tus stats"
-    puts "2. Ver tu inventario"
-    puts "3. Pescar!!!"
-    puts "4. Irte también de aca? 😭"
+    opciones_pesca()
 
     opcion2 = gets.chomp
 
     case opcion2
         when "1"
-            limpiar_pantalla()
-            jugador.mostrar_stats
+            menu_stats(jugador)
 
         when "2"
-            limpiar_pantalla()
-            jugador.mostrar_inv
+            loop do
+                opciones_inventario()
+
+                opcion3 = gets.chomp
+
+                case opcion3
+                    when "1"
+                        jugador.mostrar_inv_peces
+
+                    when "2"
+                        jugador.mostrar_inv_objetos
+                    when "3"
+                        break
+                end
+            end
 
         when "3"
             limpiar_pantalla()

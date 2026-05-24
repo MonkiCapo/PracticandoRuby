@@ -34,10 +34,18 @@ class Jugador
     else
       puts "Tenes estos peces:\n "
       @peces.each do |pez|
-      puts "#{pez.nombre} - #{pez.peso}kg - #{pez.rareza} - $#{pez.precio}"
-      end
+        puts "#{pez.nombre} - #{pez.peso}kg - #{pez.rareza} - $#{pez.precio}"
+        end
       puts ""
     end
+  end
+
+  def mostrar_inv_objetos
+    puts "Estos son los objetos que tenes:\n "
+    @objetos.each do |objeto|
+      puts "#{objeto.nombre} - #{objeto.tipo}"
+      end
+    puts ""
   end
 
   def reaccion_pesca
@@ -45,13 +53,19 @@ class Jugador
       Timeout.timeout(3) do
         gets
       end
-    rescue Timeout::Error
-      puts "Se te escapo el pez..."
-      return
+        rescue Timeout::Error
+        puts "Se te escapo el pez..."
+        return false
+      else
+        return true
     end
   end
 
-  def generar_pez_randomYguardar
+  def pescar_pez_randomYguardar
+
+    resultado = reaccion_pesca
+
+    return unless resultado
 
     datos_pez = PECES.sample
 
@@ -80,9 +94,7 @@ class Jugador
 
     puts "AGARRASTE ALGO, PRESIONA ENTER RÁPIDO"
 
-    reaccion_pesca()
-
-    generar_pez_randomYguardar()
+    pescar_pez_randomYguardar()
   end
 
   def agregardinero(monto)
