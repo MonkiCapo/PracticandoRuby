@@ -101,7 +101,7 @@ esperar()
 
 puts "Cierto que no tenes ni si quierra una caña..."
 sleep(1.5)
-puts "BANCAME AHI TE TRAIGO UNA CAÑA QUE ME SOBRA Y 5 CEBOS"
+puts "BANCAME AHI TE TRAIGO UNA CAÑA QUE ME SOBRA Y 5 CEBOS\n "
 
 jugador.entregar_kit_inicial
 
@@ -116,6 +116,7 @@ loop do
             menu_stats(jugador)
 
         when "2"
+            limpiar_pantalla()
             loop do
                 opciones_inventario()
 
@@ -123,19 +124,18 @@ loop do
 
                 case opcion3
                     when "1"
+                        limpiar_pantalla()
                         jugador.mostrar_inv_peces
-
                     when "2"
+                        limpiar_pantalla()
                         jugador.mostrar_inv_objetos
                     when "3"
+                        limpiar_pantalla()
                         break
                 end
             end
-
         when "3"
-            limpiar_pantalla()
-            jugador.pescar
-
+            menu_pescar()
         when "4"
             limpiar_pantalla()
             puts "No te gusta pescar? Dejame una sugerencia entonces\n "

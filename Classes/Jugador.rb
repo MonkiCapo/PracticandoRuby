@@ -43,7 +43,7 @@ class Jugador
   def mostrar_inv_objetos
     puts "Estos son los objetos que tenes:\n "
     @objetos.each do |objeto|
-      puts "#{objeto.nombre} - #{objeto.tipo}"
+      puts "Nombre: #{objeto.nombre} - Tipo: #{objeto.tipo}"
       end
     puts ""
   end

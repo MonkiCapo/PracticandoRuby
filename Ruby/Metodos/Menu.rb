@@ -1,15 +1,22 @@
+require_relative 'Metodos.rb'
+
 def menu_stats(jugador)
-  limpiar_pantalla
+  limpiar_pantalla()
   jugador.mostrar_stats
 end
 
 def menu_inv_peces(jugador)
-  limpiar_pantalla
+  limpiar_pantalla()
   jugador.mostrar_inv_peces
 end
 
+def menu_pescar
+  limpiar_pantalla()
+  jugador.pescar
+end
+
 def menu_inv_objetos(jugador)
-  limpiar_pantalla
+  limpiar_pantalla()
   jugador.mostrar_inv_objetos
 end
 
