@@ -42,9 +42,14 @@ class Jugador
 
   def mostrar_inv_objetos
     puts "Estos son los objetos que tenes:\n "
-    @objetos.each do |objeto|
-      puts "Nombre: #{objeto.nombre} - Tipo: #{objeto.tipo}"
-      end
+    objetos_agrupados = @objetos.group_by(&:nombre)
+
+    objetos_agrupados.each do |nombre, lista_objetos|
+
+    objeto = lista_objetos[0]
+
+    puts "#{objeto.nombre} x#{lista_objetos.size} - Tipo: #{objeto.tipo}"
+    end
     puts ""
   end
 
