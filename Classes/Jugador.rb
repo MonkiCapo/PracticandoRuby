@@ -41,14 +41,15 @@ class Jugador
   end
 
   def mostrar_inv_objetos
-    puts "Estos son los objetos que tenes:\n "
-    objetos_agrupados = @objetos.group_by(&:nombre)
-
-    objetos_agrupados.each do |nombre, lista_objetos|
-
-    objeto = lista_objetos[0]
-
-    puts "#{objeto.nombre} x#{lista_objetos.size} - Tipo: #{objeto.tipo}"
+    if @objetos.empty?
+      puts "No tenés ningún objeto en tu inventario."
+    else
+      puts "Estos son los objetos que tenes:\n "
+      
+      # Al ser un Hash, Ruby nos da directamente el objeto y su cantidad
+      @objetos.each do |objeto, cantidad|
+        puts "#{objeto.nombre} x#{cantidad} - Tipo: #{objeto.tipo}"
+      end
     end
     puts ""
   end
@@ -107,16 +108,30 @@ class Jugador
     @dinero += monto
   end
 
-  def entregar_kit_inicial
+  def ganar_objeto(objeto_nuevo, cantidad = 1)
+    # Buscamos si ya tenemos un objeto con el mismo nombre en el arreglo
+    objeto_existente = @objetos.find { |obj| obj.nombre == objeto_nuevo.nombre }
 
-    caña_vieja = OBJETOS[0]
-
-    @objetos << caña_vieja
-
-    5.times do
-      @objetos << OBJETOS[1]
+    if objeto_existente
+      # Si ya existe, solo sumamos al stock existente
+      objeto_existente.stock += cantidad
+    else
+      # Si no existe, usamos .dup para "duplicar/clonar" el objeto base 
+      # y no modificar el objeto original que está en el archivo de DATA.
+      objeto_clonado = objeto_nuevo.dup
+      objeto_clonado.stock = cantidad
+      @objetos << objeto_clonado
     end
-
   end
+
+  def entregar_kit_inicial
+    # Entrega 1 Caña Vieja
+    ganar_objeto(OBJETOS[0], 1)
+
+    # Entrega 5 Cebos
+    ganar_objeto(OBJETOS[1], 5)
+  end
+
+  
 
 end
