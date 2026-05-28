@@ -10,7 +10,7 @@ def menu_inv_peces(jugador)
   jugador.mostrar_inv_peces
 end
 
-def menu_pescar
+def menu_pescar(jugador)
   limpiar_pantalla()
   jugador.pescar
 end

@@ -124,18 +124,16 @@ loop do
 
                 case opcion3
                     when "1"
-                        limpiar_pantalla()
-                        jugador.mostrar_inv_peces
+                        menu_inv_peces(jugador)
                     when "2"
-                        limpiar_pantalla()
-                        jugador.mostrar_inv_objetos
+                        menu_inv_objetos(jugador)
                     when "3"
                         limpiar_pantalla()
                         break
                 end
             end
         when "3"
-            menu_pescar()
+            menu_pescar(jugador)
         when "4"
             limpiar_pantalla()
             puts "No te gusta pescar? Dejame una sugerencia entonces\n "
