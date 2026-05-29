@@ -46,9 +46,8 @@ class Jugador
     else
       puts "Estos son los objetos que tenes:\n "
       
-      # Al ser un Hash, Ruby nos da directamente el objeto y su cantidad
-      @objetos.each do |objeto, cantidad|
-        puts "#{objeto.nombre} x#{cantidad} - Tipo: #{objeto.tipo}"
+      @objetos.each do |objeto|
+        puts "#{objeto.nombre} x#{objeto.stock} - Tipo: #{objeto.tipo}"
       end
     end
     puts ""
@@ -64,6 +63,26 @@ class Jugador
         return false
       else
         return true
+    end
+  end
+
+  def hay_cebo(cebo)
+    cebo_existente = @objetos.find do |obj|
+      obj.tipo == "Cebo" && obj.stock > 0
+    end
+
+    if cebo_existente
+      cebo_existente.stock -= 1
+
+      if cebo_existente.stock <= 0
+      @objetos.delete(cebo_existente)
+      end
+
+      return true
+
+    else
+      puts "No tenes ningún cebo... No te conviene comprar?"
+      return false
     end
   end
 
@@ -96,6 +115,8 @@ class Jugador
   end
 
   def pescar
+    return unless hay_cebo(@objetos.find { |obj| obj.tipo == "Cebo" })
+    
     esperar()
 
     puts "AGARRASTE ALGO, PRESIONA ENTER RÁPIDO"
@@ -108,18 +129,18 @@ class Jugador
     @dinero += monto
   end
 
-  def ganar_objeto(objeto_nuevo, cantidad = 1)
+  def ganar_objeto(objeto_nuevo, stock = 1)
     # Buscamos si ya tenemos un objeto con el mismo nombre en el arreglo
     objeto_existente = @objetos.find { |obj| obj.nombre == objeto_nuevo.nombre }
 
     if objeto_existente
       # Si ya existe, solo sumamos al stock existente
-      objeto_existente.stock += cantidad
+      objeto_existente.stock += stock
     else
       # Si no existe, usamos .dup para "duplicar/clonar" el objeto base 
       # y no modificar el objeto original que está en el archivo de DATA.
       objeto_clonado = objeto_nuevo.dup
-      objeto_clonado.stock = cantidad
+      objeto_clonado.stock = stock
       @objetos << objeto_clonado
     end
   end
