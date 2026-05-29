@@ -66,7 +66,7 @@ class Jugador
     end
   end
 
-  def hay_cebo(cebo)
+  def hay_cebo
     cebo_existente = @objetos.find do |obj|
       obj.tipo == "Cebo" && obj.stock > 0
     end
@@ -115,7 +115,7 @@ class Jugador
   end
 
   def pescar
-    return unless hay_cebo(@objetos.find { |obj| obj.tipo == "Cebo" })
+    return unless hay_cebo
     
     esperar()
 
