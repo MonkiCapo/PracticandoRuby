@@ -24,6 +24,8 @@ class Jugador
     puts "Bueno, observalas bien entonces\n "
     puts "Nombre: #{@nombre}"
     puts "Vida: #{@vida}\n "
+    puts "Dinero: #{@dinero}\n "
+    puts "Caña: #{@caña.nombre}\n "
   end
 
   def mostrar_inv_peces
@@ -37,6 +39,18 @@ class Jugador
         end
       puts ""
     end
+  end
+
+  def mostrar_cañas
+    cañas = @objetos.select do |obj|
+      obj.tipo == "Caña"
+    end
+
+    puts "--- Estas son tus cañas ---"
+    cañas.each_with_index do |caña, index|
+      puts "#{index + 1}. #{caña.nombre}\n"
+    end
+    puts ""
   end
 
   def mostrar_inv_objetos
@@ -53,7 +67,7 @@ class Jugador
   end
 
   def agregardinero(monto)
-    puts "Recibiste #{monto}!"
+    puts "Recibiste $#{monto}!"
     @dinero += monto
   end
 

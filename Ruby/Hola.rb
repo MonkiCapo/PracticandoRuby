@@ -103,7 +103,7 @@ esperar()
 
 puts "Cierto que no tenes ni si quierra una caña..."
 sleep(1.5)
-puts "BANCAME AHI TE TRAIGO UNA CAÑA QUE ME SOBRA Y 5 CEBOS\n "
+puts "BANCAME AHI TE TRAIGO UNA CAÑA, PLATA Y 5 CEBOS\n "
 
 jugador.entregar_kit_inicial
 
