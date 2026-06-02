@@ -23,21 +23,30 @@ class Jugador
   def mostrar_stats
     puts "Bueno, observalas bien entonces\n "
     puts "Nombre: #{@nombre}"
-    puts "Vida: #{@vida}\n "
-    puts "Dinero: #{@dinero}\n "
-    puts "Caña: #{@caña.nombre}\n "
+    puts "Vida: #{@vida}"
+    puts "Dinero: #{@dinero}"
+    if @caña == nil
+      puts "Caña: No tenes una caña equipada"
+    else
+      puts "Caña: #{@caña}"
+    end
+    pedir_enter()
+    limpiar_pantalla()
   end
 
   def mostrar_inv_peces
     if @peces.empty?
       esperar()
       puts "Estamos secos de pescados eh, #{@nombre}. O los vendiste todos, o no pescaste así que anda y pesca!"
+      pedir_enter()
+      limpiar_pantalla()
     else
       puts "Tenes estos peces:\n "
       @peces.each do |pez|
         puts "#{pez.nombre} - #{pez.peso}kg - #{pez.rareza} - $#{pez.precio}"
         end
-      puts ""
+      pedir_enter()
+      limpiar_pantalla()
     end
   end
 
@@ -50,7 +59,29 @@ class Jugador
     cañas.each_with_index do |caña, index|
       puts "#{index + 1}. #{caña.nombre}\n"
     end
-    puts ""
+    pedir_enter()
+    limpiar_pantalla()
+  end
+
+  def equipar_caña(caña_equipar)
+    caña_a_equipar = @objetos.find do |obj| 
+      obj == caña_equipar && obj.tipo == "Caña" || obj.nombre.downcase == caña_equipar.to_s.downcase && obj.tipo == "Caña"
+    end
+
+    if caña_a_equipar.nil?
+      puts "No existe esa caña en tu inventario..."
+      return false
+    end
+
+    # 1. Si ya tenía una caña equipada, la devuelve al inventario
+    @objetos << @caña if @caña
+
+    # 2. Equipa la nueva caña
+    @caña = caña_a_equipar
+
+    # 3. La quita del inventario para que no esté en ambos lados
+    @objetos.delete(caña_a_equipar)
+    return true
   end
 
   def mostrar_inv_objetos
@@ -63,7 +94,7 @@ class Jugador
         puts "#{objeto.nombre} x#{objeto.stock} - Tipo: #{objeto.tipo}"
       end
     end
-    puts ""
+    pedir_enter()
   end
 
   def agregardinero(monto)

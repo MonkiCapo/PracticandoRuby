@@ -52,3 +52,8 @@ def esperar
     puts "."
     sleep(1.5)
 end
+
+def pedir_enter
+    puts "\nPresioná Enter para volver..."
+    gets
+end

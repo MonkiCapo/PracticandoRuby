@@ -21,6 +21,11 @@ def menu_inv_objetos(jugador)
   jugador.mostrar_inv_objetos
 end
 
+def menu_inv_cañas(jugador)
+    limpiar_pantalla()
+    jugador.mostrar_cañas
+end
+
 def opciones_pesca
   puts "Entonces qué te gustaría hacer?"
   puts "1. Ver tus stats"
@@ -34,7 +39,9 @@ def opciones_inventario
   puts "Qué te gustaría ver de tu inventario?"
   puts "1. Peces"
   puts "2. Objetos"
-  puts "3. Volver"
+  puts "3. Cañas"
+  puts "4. Equipar caña"
+  puts "5. Volver"
 end
 
 def opciones_tienda
@@ -49,8 +56,7 @@ def ver_objetos_tienda(tienda)
     limpiar_pantalla()
     puts "--- Objetos en la Tienda ---"
     tienda.mostrar_inv_tienda
-    puts "\nPresioná Enter para volver..."
-    gets
+    pedir_enter()
     limpiar_pantalla()
 end
 
@@ -67,8 +73,7 @@ def menu_comprar_item(jugador, tienda)
 
     puts ""
     tienda.comprar_item(jugador, nombre_objeto)
-    puts "\nPresioná Enter para continuar..."
-    gets
+    pedir_enter()
     limpiar_pantalla()
 end
 
@@ -106,6 +111,10 @@ def menu_inventario(jugador)
         when "2"
             menu_inv_objetos(jugador)
         when "3"
+            menu_inv_cañas(jugador)
+        when "4"
+            
+        when "5"
             limpiar_pantalla()
             break
         else
