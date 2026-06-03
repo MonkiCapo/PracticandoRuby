@@ -59,8 +59,6 @@ class Jugador
     cañas.each_with_index do |caña, index|
       puts "#{index + 1}. #{caña.nombre}\n"
     end
-    pedir_enter()
-    limpiar_pantalla()
   end
 
   def equipar_caña(caña_equipar)

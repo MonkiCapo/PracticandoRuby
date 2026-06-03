@@ -39,9 +39,8 @@ def opciones_inventario
   puts "Qué te gustaría ver de tu inventario?"
   puts "1. Peces"
   puts "2. Objetos"
-  puts "3. Cañas"
-  puts "4. Equipar caña"
-  puts "5. Volver"
+  puts "3. Equipar caña"
+  puts "4. Volver"
 end
 
 def opciones_tienda
@@ -73,6 +72,21 @@ def menu_comprar_item(jugador, tienda)
 
     puts ""
     tienda.comprar_item(jugador, nombre_objeto)
+    pedir_enter()
+    limpiar_pantalla()
+end
+
+def menu_equipar_caña(jugador, caña)
+    limpiar_pantalla()
+    jugador.mostrar_cañas()
+    puts ""
+    print "Ingresá el nombre de la caña que te quieras equipar ()"
+
+    nombre_cana = gets.chomp
+    return if nombre_objeto.downcase == "volver" || nombre_objeto.empty?
+
+    puts ""
+    jugador.equipar_caña(nombre_cana)
     pedir_enter()
     limpiar_pantalla()
 end
@@ -111,10 +125,8 @@ def menu_inventario(jugador)
         when "2"
             menu_inv_objetos(jugador)
         when "3"
-            menu_inv_cañas(jugador)
+            menu_equipar_caña(jugador, caña)
         when "4"
-            
-        when "5"
             limpiar_pantalla()
             break
         else
