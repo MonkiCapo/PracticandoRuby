@@ -28,7 +28,8 @@ class Jugador
     if @caña == nil
       puts "Caña: No tenes una caña equipada"
     else
-      puts "Caña: #{@caña}"
+      print "Caña: "
+      ver_caña
     end
     pedir_enter()
     limpiar_pantalla()
@@ -80,6 +81,10 @@ class Jugador
     # 3. La quita del inventario para que no esté en ambos lados
     @objetos.delete(caña_a_equipar)
     return true
+  end
+
+  def ver_caña
+    puts "#{@caña.nombre}"
   end
 
   def mostrar_inv_objetos

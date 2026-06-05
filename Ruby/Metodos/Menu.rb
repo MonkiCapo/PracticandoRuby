@@ -76,17 +76,20 @@ def menu_comprar_item(jugador, tienda)
     limpiar_pantalla()
 end
 
-def menu_equipar_caña(jugador, caña)
+def menu_equipar_caña(jugador)
     limpiar_pantalla()
     jugador.mostrar_cañas()
     puts ""
-    print "Ingresá el nombre de la caña que te quieras equipar ()"
+    print "Ingresá el nombre de la caña que te quieras equipar (o escribe 'volver' para cancelar): "
 
     nombre_cana = gets.chomp
-    return if nombre_objeto.downcase == "volver" || nombre_objeto.empty?
+    return if nombre_cana.downcase == "volver" || nombre_cana.empty?
 
     puts ""
-    jugador.equipar_caña(nombre_cana)
+    if jugador.equipar_caña(nombre_cana)
+      print "¡Se pudo equipar la caña! Caña equipada: "
+      jugador.ver_caña
+    end
     pedir_enter()
     limpiar_pantalla()
 end
@@ -125,7 +128,7 @@ def menu_inventario(jugador)
         when "2"
             menu_inv_objetos(jugador)
         when "3"
-            menu_equipar_caña(jugador, caña)
+            menu_equipar_caña(jugador)
         when "4"
             limpiar_pantalla()
             break
