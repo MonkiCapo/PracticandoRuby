@@ -21,6 +21,14 @@ class Pesca
     end
   end
 
+  def self.tiene_cana_equipada(jugador)
+    if jugador.caña.nil?
+      puts "No tenés ninguna caña equipada..."
+      return false
+    end
+    true
+  end
+
   def self.pescar_pez_randomYguardar(jugador)
 
     resultado = reaccion_pesca(jugador)
@@ -70,6 +78,7 @@ class Pesca
   end
 
   def self.pescar(jugador)
+    return unless tiene_cana_equipada(jugador)
     return unless hay_cebo(jugador)
     
     esperar()
